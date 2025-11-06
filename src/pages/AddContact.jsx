@@ -36,18 +36,21 @@ export const AddContact = () => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                ...data, agenda_slug: "carlossan"
+                ...data, 
+                agenda_slug: "carlossan"
             })
             })
-            .then(response)
+            .then((response) => response.json()) 
             .then((newContact)=> {
                 dispatch({
                     type: "add_contact",
                     payload: newContact
-                })
+                });
+                navigate("/")
             })
-            .catch() 
-        })
+            .catch((error) => {
+                console.error("Error al crear el contacto:", error)
+            });
 
 
     }
